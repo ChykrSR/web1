@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserLogin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id = "uname">Username</h1>
+    <center>
+        <div id = "profile" style="position: relative; height: 200px ; width: 200px; background-image:url(https://www.citypng.com/public/uploads/preview/profile-user-round-yellow-icon-symbol-free-png-11639594308nr1vrmbcv3.png);border-radius: 100%; background-size: cover ;">
+        </div> 
+        <label for="">Username</label>
+        <div>
+            <input type="text" placeholder="put your name here" id="input"><button onclick="setuserName()">Set</button>
+        </div>
+        <div>
+            <label for="">Profile-Image</label>
+        </div>
+        <div>
+            
+            <input type="text" placeholder="put your image here" id="inputimg"><button onclick="setimg()">Set</button>
+        </div>
+        <center>
+            <label for="">Phong numebr lIst</label>
+            <input id = name type="text" placeholder="Name">
+            <input id = "tel" type="text" placeholder="Tel"> <button onclick="setList()">SetList</button>
+            <div>
+                <table style="width:100%">
+                    <tr>
+                        <td>No.</td>
+                      <td>Name</td>
+                      <td>Tel</td>
+                    </tr>
+                  </table>
+            </div>
+        </center>
+    </center>
+    
+    
+    <script>
+        const uname = document.getElementById("uname");
+        const input = document.getElementById("input");
+        const img = document.getElementById("inputimg");
+        const image = document.getElementById("profile")
+        uname.textContent = "User-Login";
+
+        function setuserName(){
+            uname.textContent = input.value;
+            input.value = "";
+        };
+        function setimg () {
+            image.style.backgroundImage = "url(" + img.value + ")"
+            img.value = ""
+        };
+        function setList(){
+            
+        };
+    </script>
+</body>
+</html>
