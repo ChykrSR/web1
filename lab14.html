@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UserLogin</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1 id = "uname">Username</h1>
+    <center>
+        <div id = "profile" style="position: relative; height: 200px ; width: 200px; background-image:url(https://www.citypng.com/public/uploads/preview/profile-user-round-yellow-icon-symbol-free-png-11639594308nr1vrmbcv3.png);border-radius: 100%; background-size: cover ;">
+        </div> 
+        <label for="">Username</label>
+        <div>
+            <input type="text" placeholder="put your name here" id="input"><button onclick="setuserName()">Set</button>
+        </div>
+        <div>
+            <label for="">Profile-Image</label>
+        </div>
+        <div>
+            
+            <input type="text" placeholder="put your image here" id="inputimg"><button onclick="setimg()">Set</button>
+        </div>
+        
+        <div style="padding: 2%;">
+            <label for="">Phong numebr lIst</label>
+            <input id = name type="text" placeholder="Name">
+            <input id = "tel" type="text" placeholder="Tel"> <button onclick="addContact()">setList</button>
+            <button onclick="exportContacts()">Export</button>
+            <table id = "table" style="width:100%" border="1">
+                <tr>
+                    <td>No.</td>
+                  <td>Name</td>
+                  <td>Tel</td>
+            
+                </tr> 
+              </table>
+        </div>
+    </center>
+    
+    
+    <script>
+        const uname = document.getElementById("uname");
+        const input = document.getElementById("input");
+        const img = document.getElementById("inputimg");
+        const image = document.getElementById("profile");
+        const list = document.getElementById("table");
+        const phneName = document.getElementById("name")
+        const phneNum = document.getElementById("tel")
+        uname.textContent = "User-Login";
+        
+        function setuserName(){
+            uname.textContent = input.value;
+            input.value = "";
+        };
+        function setimg () {
+            image.style.backgroundImage = "url(" + img.value + ")"
+            img.value = ""
+        };
+        const contacts = [];
+        function addContact() {
+            var name = phneName.value;
+            var phone = phneNum.value;
+
+            if (name && phone) {
+                contacts.push({ name, phone });
+                updateContactList();
+            }
+        };
+        function updateContactList() {
+            const contactList = list
+            contactList.innerHTML = '';
+            contacts.forEach((contact, index) => {
+                const row = document.createElement('tr');
+                row.innerHTML = `<td>${index + 1}</td><td>${contact.name}</td><td>${contact.phone}</td>`;
+                contactList.appendChild(row);
+            });
+        };
+        function exportContacts() {
+            var csvContent = "data:text/csv;charset=utf-8,Name,Phone\n";
+            contacts.forEach(function(contact) {
+                csvContent += `${contact.name},${contact.phone}\n`;
+            });
+
+            var encodedUri = encodeURI(csvContent);
+            var link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "contacts.csv");
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        };
+    </script>
+</body>
+</html>
